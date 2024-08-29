@@ -327,9 +327,4 @@
       <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="buildcounterinput.txt">
-      <Filter>MaterialEditor</Filter>
-    </None>
-  </ItemGroup>
 </Project>

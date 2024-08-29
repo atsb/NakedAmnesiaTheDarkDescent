@@ -50,7 +50,7 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_syswm.h"
 #endif
-#ifdef WIN32
+#ifdef _WIN32
 #include "Windows.h"
 #include "Dbt.h"
 #endif
@@ -76,7 +76,7 @@ namespace hpl {
 			}
 #if SDL_VERSION_ATLEAST(2,0,0)
             SDL_DisableScreenSaver();
-#elif defined WIN32 // only on SDL1.2
+#elif defined _WIN32 // only on SDL1.2
 			// Set up device notifications!
 			// This is bad, cos it is actually Windows specific code, should not be here. TODO: move it, obviously
 			SDL_SysWMinfo info;

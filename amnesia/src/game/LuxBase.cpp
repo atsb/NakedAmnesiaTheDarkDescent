@@ -418,34 +418,6 @@ bool cLuxBase::Init(const tString &asCommandline)
 	if(InitMainConfig()==false) return false;
 
 	Log("Version %d.%d \n",kCurrentVersion_Main, kCurrentVersion_Minor);
-
-	#ifdef COPY_PROTECTION_ENABLED
-	/////////////////////////////
-	// Copy Protection check
-	eSerialInputReturnState serialState = AskForSerial();
-	while(serialState!=eSerialInputReturnState_Validated)
-	{
-		if(serialState==eSerialInputReturnState_WrongKey)
-		{
-			cPlatform::CreateMessageBox(_W("Error!"),_W("Invalid Serial!\n"));
-		}
-		else
-		{
-			msErrorMessage = _W("Serial key needed to run game!\n");
-			return false;
-		}
-
-		serialState = AskForSerial();
-	}
-	
-	//calculate the CRC for the serial key.
-	int lCRCKey = 1337;
-	cCRC serialCRC(lCRCKey);
-	for(size_t i=0; i<gsSerialKey.size(); ++i)
-		serialCRC.PutByte(gsSerialKey[i]);	
-	Log(" - s%X-%X", (int)serialCRC.Done(), lCRCKey);
-
-	#endif
 	Log("\n");
 	
 	/////////////////////////////
@@ -1140,7 +1112,7 @@ bool cLuxBase::InitEngine()
 	vars.mSound.mlStreamBufferSize = mpConfigHandler->mlSoundStreamBufferSize;
 
 	// Sound device filter set here (if needed)
-#if defined(WIN32)
+#if defined(_WIN32)
 	iLowLevelSound::SetSoundDeviceNameFilter("software");
 #endif
 	

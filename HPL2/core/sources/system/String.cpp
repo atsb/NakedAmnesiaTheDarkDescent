@@ -29,7 +29,7 @@
 #include "SDL/SDL_stdinc.h"
 #endif
 
-#if defined WIN32
+#if defined _WIN32
 #define SIZEOF_WCHAR 2
 #else
 #define SIZEOF_WCHAR 4
@@ -65,7 +65,7 @@ namespace hpl {
 	{
         tString sTemp;
 		
-		#ifdef WIN32
+		#ifdef _WIN32
 			sTemp.resize(awsString.size());
 			for(size_t i=0; i<awsString.length(); ++i)
 			{
@@ -134,6 +134,10 @@ namespace hpl {
                 pCur+=6;
             }
 #endif
+			else {
+				uTemp = 0xfffd; // replacement character
+				pCur += 1;
+			}
             sTemp.push_back((wchar_t)uTemp);
         }
 
@@ -380,7 +384,7 @@ namespace hpl {
 
 		/////////
 		// Find difference
-		int lDifferenceAt = 0;
+		size_t lDifferenceAt = 0;
 		size_t lPathSize = vPathFolders.size();
 		size_t lRelativeSize = vRelativeFolders.size();
 		size_t lCount = lPathSize < lRelativeSize ? lPathSize : lRelativeSize;
@@ -440,7 +444,7 @@ namespace hpl {
 
 		/////////
 		// Find difference
-		int lDifferenceAt = 0;
+		size_t lDifferenceAt = 0;
 		size_t lPathSize = vPathFolders.size();
 		size_t lRelativeSize = vRelativeFolders.size();
 		size_t lCount = lPathSize < lRelativeSize ? lPathSize : lRelativeSize;
@@ -518,7 +522,7 @@ namespace hpl {
 		if(asPath.size()==0) return "";
 
 		char lLastChar = asPath[asPath.size()-1];
-		if(lLastChar == '/' || lLastChar == '\\') return cString::Sub(asPath,0, asPath.size()-1);
+		if(lLastChar == '/' || lLastChar == '\\') return cString::Sub(asPath,0, (int)asPath.size()-1);
 
 		return asPath;
 	}
@@ -528,7 +532,7 @@ namespace hpl {
 		if(asPath.size()==0) return _W("");
 
 		wchar_t lLastChar = asPath[asPath.size()-1];
-		if(lLastChar == _W('/') || lLastChar == _W('\\')) return cString::SubW(asPath,0, asPath.size()-1);
+		if(lLastChar == _W('/') || lLastChar == _W('\\')) return cString::SubW(asPath,0, (int)asPath.size()-1);
 
 		return asPath;
 	}
@@ -955,7 +959,7 @@ namespace hpl {
 
 		tWString sFormat = _W("%0*d");
 
-#ifdef WIN32
+#ifdef _WIN32
 		swprintf(buff, sFormat.c_str(), alPaddingZeros, alX);
 #else
 		swprintf(buff, 256, sFormat.c_str(), alPaddingZeros, alX);
@@ -970,7 +974,7 @@ namespace hpl {
 
 		tWString sFormat = _W("%0*ld");
 
-#ifdef WIN32
+#ifdef _WIN32
 		swprintf(buff, sFormat.c_str(), alPaddingZeros, alX);
 #else
 		swprintf(buff, 256, sFormat.c_str(), alPaddingZeros, alX);
@@ -987,7 +991,7 @@ namespace hpl {
 		////////////////////////////////////////////////////////////
 		// Print the float into a wstring, using a given precision
 		tWString sFormat = _W("%.*f");
-#ifdef WIN32
+#ifdef _WIN32
 		swprintf(buff, sFormat.c_str(), alNumDecimals ,afX);
 #else
 		swprintf(buff, 256, sFormat.c_str(), alNumDecimals, afX);

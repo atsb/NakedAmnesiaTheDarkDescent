@@ -72,34 +72,40 @@ cParticleEditorWorld::cParticleEditorWorld(iEditorBase* apEditor) : iEditorWorld
 		cMeshEntity *pWall = mpWorld->CreateMeshEntity("Wall",pMesh,true);
 		
 		cVector3f vPos(0,6.0f-0.2f,0);
-		cMatrixf mtxTrans = cMath::MatrixScale(6);
-		mtxTrans = cMath::MatrixMul(cMath::MatrixRotateX(kPi2f),mtxTrans);
+		cMatrixf mtxMesh = cMath::MatrixScale(6);
+		cMatrixf mtxPhys = cMatrixf::Identity; // BUzer: don't scale physics matrix
+
+		mtxMesh = cMath::MatrixMul(cMath::MatrixRotateX(kPi2f), mtxMesh);
+		mtxPhys = cMath::MatrixMul(cMath::MatrixRotateX(kPi2f), mtxPhys);
 		
 		if(i==0)
 		{
 			vPos.x -= 6;
-			mtxTrans = cMath::MatrixMul(cMath::MatrixRotateY(kPi2f),mtxTrans);
+			mtxMesh = cMath::MatrixMul(cMath::MatrixRotateY(kPi2f), mtxMesh);
+			mtxPhys = cMath::MatrixMul(cMath::MatrixRotateY(kPi2f), mtxPhys);
 		}
 		if(i==1)
 		{
 			vPos.x += 6;
-			mtxTrans = cMath::MatrixMul(cMath::MatrixRotateY(-kPi2f),mtxTrans);
+			mtxMesh = cMath::MatrixMul(cMath::MatrixRotateY(-kPi2f), mtxMesh);
+			mtxPhys = cMath::MatrixMul(cMath::MatrixRotateY(-kPi2f), mtxPhys);
 		}
 		if(i==2)
 		{
 			vPos.z -= 6;
 		}
 		
-        
-		mtxTrans.SetTranslation(vPos);
-		pWall->SetMatrix(mtxTrans);
+		mtxMesh.SetTranslation(vPos);
+		mtxPhys.SetTranslation(vPos);
+
+		pWall->SetMatrix(mtxMesh);
 		pWall->SetVisible(mbShowWalls);
 		mvWalls[i+1] = pWall;
 
 		iCollideShape *pShape = mpPhysicsWorld->CreateBoxShape(cVector3f(12,0.1f, 12),&mtxOffset);
 		iPhysicsBody *pBody = mpPhysicsWorld->CreateBody("Floor", pShape);
 
-		pBody->SetMatrix(mtxTrans);
+		pBody->SetMatrix(mtxPhys);
 	}
 	
 	/////////////////////////////////

@@ -843,7 +843,7 @@ cWidgetMainMenu* cLevelEditor::CreateMainMenu()
 	// Quit
 	mpMainMenuExit = pItem->AddMenuItem(_W("Quit"));
 	mpMainMenuExit->AddCallback(eGuiMessage_ButtonPressed, this, kGuiCallback(MainMenu_ItemClick));
-#if defined(WIN32)
+#if defined(_WIN32)
 	mpMainMenuExit->AddShortcut(eKeyModifier_Alt, eKey_F4);
 #elif defined(__linux__)
 	mpMainMenuExit->AddShortcut(eKeyModifier_Ctrl, eKey_Q);

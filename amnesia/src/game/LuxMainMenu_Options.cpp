@@ -173,7 +173,6 @@ void cLuxMainMenu_Options::ExitPressed()
 
 void cLuxMainMenu_Options::CreateMainGui()
 {
-	cWidgetButton *pButton;
 	float fLeftBorderSize = 30;
 	float fUpperBorderSize = 10;
 
@@ -1325,7 +1324,7 @@ void cLuxMainMenu_Options::SetInputValues(cResourceVarsObject& aObj)
 	{
 		if(lSndDev==mvSoundDevices[i]->GetID())
 		{
-			lSndDevIdx = i;
+			lSndDevIdx = (int)i;
 			break;
 		}
 	}

@@ -96,7 +96,7 @@ namespace hpl {
 			if(mvRenderers[i])
 			{
 				mvRenderers[i]->DestroyData();
-				hplDelete(mvRenderers[i])
+				hplDelete(mvRenderers[i]);
 			}
 		}
 		mvRenderers.clear();

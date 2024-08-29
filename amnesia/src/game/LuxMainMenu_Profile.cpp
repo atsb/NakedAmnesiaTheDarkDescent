@@ -185,8 +185,8 @@ void cLuxMainMenu_Profile::CreateMainGui()
 	mpListProfiles->SetFocusNavigation(eUIArrow_Down, vButtons[0]);
 	for(size_t i=0; i<vButtons.size(); ++i)
 	{
-		int lPrev = i-1;
-		int lNext = i+1;
+		int lPrev = (int)i-1;
+		int lNext = (int)i+1;
 		iWidget* pWidget = vButtons[i];
 
 		pWidget->SetFocusNavigation(eUIArrow_Up, mpListProfiles);
@@ -532,26 +532,6 @@ bool cLuxMainMenu_Profile::PressDeleteProfilePopupClose(iWidget* apWidget, const
 kGuiCallbackDeclaredFuncEnd(cLuxMainMenu_Profile, PressDeleteProfilePopupClose);
 
 //-----------------------------------------------------------------------
-
-//Encoded string 'http://steamcommunity.com/as/da/rkdesce/nt/?k='
-static unsigned char gvEncStr[54] = {0x2B, 0x15, 0x7, 0x12, 0x5B, 0x47, 0x6C, 0x30, 0x37, 0x26, 0x22, 0x2E, 0x20, 0x2C, 0x2E, 0x2E, 0x36, 0x2D, 0x2A, 0x37, 0x3A, 0x6D, 0x20, 0x2C, 0x2E, 0x6C, 0x22, 0x30, 0x6C, 0x21, 0x2C, 0x36, 0x2D, 0x20, 0x26, 0x6C, 0x27, 0x22, 0x6C, 0x31, 0x28, 0x27, 0x26, 0x30, 0x20, 0x26, 0x6C, 0x2D, 0x37, 0x6C, 0x7C, 0x28, 0x7E, 0};
-#define kCRCKey			0xDD4B3114
-#define kKeyBufferCRC		0xA9DA472C
-
-static tString DecryptCryptoStringCode(const tString &asEncStr, cBinaryBuffer &aKeyBuffer)
-{
-	size_t lBuffPos=0;
-	tString sOutStr;
-
-	aKeyBuffer.SetPos(0);
-	for(size_t i=0; i<asEncStr.size(); ++i)
-	{
-		sOutStr +=  asEncStr[i] ^ aKeyBuffer.GetChar();
-		if(++lBuffPos >= aKeyBuffer.GetSize()) aKeyBuffer.SetPos(0);
-	}
-
-	return sOutStr;
-}
 
 bool cLuxMainMenu_Profile::PressEnterNameCreate(iWidget* apWidget, const cGuiMessageData& aData)
 {

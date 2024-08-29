@@ -286,6 +286,7 @@ bool cLuxMap::LoadFromFile(const tString & asFile, bool abLoadEntities)
 			}
 		}
 
+#if 0
 		//////////////////////////
 		// Print what i've done
 		#if not MAC_OS && not LINUX
@@ -302,6 +303,7 @@ bool cLuxMap::LoadFromFile(const tString & asFile, bool abLoadEntities)
 
 		gpBase->mpDebugHandler->AddMessage(sDebugMsg, false);
         #endif
+#endif
 
 		//////////////////////////
 		// Remove the entities from above

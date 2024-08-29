@@ -359,7 +359,7 @@ tWString cLuxHelpFuncs::ParseStringCommand(const tWString& asCommand)
 				sConverted.resize(lSize);
 				std::copy(sType.begin(), sType.end(), sConverted.begin());
 
-				sOutput += cString::SubW(sConverted, 0, lSize-1);
+				sOutput += cString::SubW(sConverted, 0, (int)lSize-1);
 				sOutput += _W(".");
 
 				//////////
@@ -369,7 +369,7 @@ tWString cLuxHelpFuncs::ParseStringCommand(const tWString& asCommand)
 				sConverted.resize(lSize);
 				std::copy(sName.begin(), sName.end(), sConverted.begin());
 
-				sOutput += cString::SubW(sConverted, 0, lSize-1);
+				sOutput += cString::SubW(sConverted, 0, (int)lSize-1);
 				
 				//////
 				// Enclose it with a $, since "." and " " is used in the names

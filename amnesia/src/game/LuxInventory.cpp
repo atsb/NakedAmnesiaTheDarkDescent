@@ -563,7 +563,7 @@ bool cLuxInventory_Slot::OnDraw(iWidget* apWidget, const cGuiMessageData& aData)
 			float fAmp = mpInventory->mfLayout_SlotPulsatingAmp;
 			float fFreq = mpInventory->mfLayout_SlotPulsatingFreq;
 
-			float fPulseAlpha = fMin + (1.0f-fMin)*(cos(mpInventory->mfTimer*fFreq)*0.5+0.5f);
+			float fPulseAlpha = fMin + (1.0f-fMin)*(cos(mpInventory->mfTimer*fFreq)*0.5f+0.5f);
 			
 			for(int i=0; i<2; ++i)
 				mpInventory->mpGuiSet->DrawGfx(pItem->GetImage(), vItemPos+cVector3f(0,0,0.1f),-1, cColor(fPulseAlpha*mfGlowAlpha*mpInventory->mfAlpha, 1), eGuiMaterial_Additive);
@@ -1052,7 +1052,7 @@ cLuxInventory_Item * cLuxInventory::AddItem(const tString& asName, eLuxItemType 
 		if (pVar == NULL)
 		{
 			Error("Couldn't find Global var '%s'\n", asName.c_str());
-			//return;
+			return NULL;
 		}
 		tString sVal = pVar->msVal;
 		int intVal = 0;
@@ -2057,10 +2057,10 @@ bool cLuxInventory::OilOnDraw(iWidget* apWidget, const cGuiMessageData& aData)
 	cVector2f vLiguidSize = apWidget->GetSize()*2;
 	cVector3f vLiquidPos = apWidget->GetGlobalPosition() - cVector3f(vLiguidSize.x*0.25f, vLiguidSize.y*0.25f, 0);
 
-	cVector3f vLiquidPosAdd1 = cVector3f(	sin(mfOilMovementT*0.3f) * apWidget->GetSize().x*0.5, 
-											cos(mfOilMovementT*0.2f) * apWidget->GetSize().y*0.2, 0.6f);
-	cVector3f vLiquidPosAdd2 = cVector3f(  cos(mfOilMovementT*0.2f) * apWidget->GetSize().x*0.3, 
-											sin(mfOilMovementT*0.15f) * apWidget->GetSize().y*0.15, 0.6f);
+	cVector3f vLiquidPosAdd1 = cVector3f(	sin(mfOilMovementT*0.3f) * apWidget->GetSize().x*0.5f, 
+											cos(mfOilMovementT*0.2f) * apWidget->GetSize().y*0.2f, 0.6f);
+	cVector3f vLiquidPosAdd2 = cVector3f(  cos(mfOilMovementT*0.2f) * apWidget->GetSize().x*0.3f, 
+											sin(mfOilMovementT*0.15f) * apWidget->GetSize().y*0.15f, 0.6f);
 	
 	mpGuiSet->DrawGfx(mpOilLiquid, vLiquidPos + vLiquidPosAdd1, vLiguidSize, cColor(1,0.75f*mfAlpha));
 	mpGuiSet->DrawGfx(mpOilLiquid, vLiquidPos + vLiquidPosAdd2, vLiguidSize, cColor(1,0.25f*mfAlpha));
@@ -2577,7 +2577,7 @@ tWString cLuxInventory::ParseStringForGamepadIconsRemoval(const tWString & asCur
 				/////////
 				// Make room for the icon
 				sOutput += sReplace;
-				lPosition += sReplace.size();
+				lPosition += (int)sReplace.size();
 
 				bParseVar = false;
 			}

@@ -396,8 +396,8 @@ void cSimpleCamera::Update(float afFrameTime)
 			/////////////////////
 			//Rotation
 			cVector3f vRot(0);
-			if(mpEngine->GetInput()->IsTriggerd(7)) vRot.z += 1.2 * fMul;
-			if(mpEngine->GetInput()->IsTriggerd(8)) vRot.z += -1.2 * fMul;
+			if(mpEngine->GetInput()->IsTriggerd(7)) vRot.z += 1.2f * fMul;
+			if(mpEngine->GetInput()->IsTriggerd(8)) vRot.z += -1.2f * fMul;
 			
 			cVector2l vAbsRel = mpEngine->GetInput()->GetMouse()->GetRelPosition();
 			cVector2f vRel = cVector2f((float)vAbsRel.x,(float)vAbsRel.y) / mpEngine->GetGraphics()->GetLowLevel()->GetScreenSizeFloat();
@@ -425,8 +425,8 @@ void cSimpleCamera::Update(float afFrameTime)
 			if(mpEngine->GetInput()->IsTriggerd(4)) mpCamera->MoveRight(-mfSpeed * fMul);
 			if(mpEngine->GetInput()->IsTriggerd(5)) mpCamera->MoveUp(mfSpeed * fMul);
 			if(mpEngine->GetInput()->IsTriggerd(6)) mpCamera->MoveUp(-mfSpeed * fMul);
-			if(mpEngine->GetInput()->IsTriggerd(7)) mpCamera->AddRoll(1.2 * fMul);
-			if(mpEngine->GetInput()->IsTriggerd(8)) mpCamera->AddRoll(-1.2 * fMul);
+			if(mpEngine->GetInput()->IsTriggerd(7)) mpCamera->AddRoll(1.2f * fMul);
+			if(mpEngine->GetInput()->IsTriggerd(8)) mpCamera->AddRoll(-1.2f * fMul);
 
 			cVector2l vAbsRel = mpEngine->GetInput()->GetMouse()->GetRelPosition();
 			cVector2f vRel = cVector2f((float)vAbsRel.x,(float)vAbsRel.y) / mpEngine->GetGraphics()->GetLowLevel()->GetScreenSizeFloat();

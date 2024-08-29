@@ -91,7 +91,7 @@ void cLuxHandObject_LightSource::ImplementedCreateEntity(cLuxMap *apMap)
 	mvDefaultSubMeshMatrix.resize(mpMeshEntity->GetSubMeshEntityNum());
 	for(size_t i=0; i<mpMeshEntity->GetSubMeshEntityNum(); ++i)
 	{
-		cSubMeshEntity *pSubEnt = mpMeshEntity->GetSubMeshEntity(i);
+		cSubMeshEntity *pSubEnt = mpMeshEntity->GetSubMeshEntity((unsigned int)i);
 		mvDefaultSubMeshMatrix[i] = pSubEnt->GetLocalMatrix();
 	}
 }
@@ -290,7 +290,7 @@ void cLuxHandObject_LightSource::UpdateSwayPhysics(float afTimeStep)
 
 	for(size_t i=0; i<mpMeshEntity->GetSubMeshEntityNum(); ++i)
 	{
-		cSubMeshEntity *pSubEnt = mpMeshEntity->GetSubMeshEntity(i);
+		cSubMeshEntity *pSubEnt = mpMeshEntity->GetSubMeshEntity((unsigned int)i);
 		if(pSubEnt->GetSubMesh()->GetName() == msSkipSwaySubMesh) continue;
 		//Log("'%s'\n",pSubEnt->GetSubMesh()->GetName().c_str());
 		

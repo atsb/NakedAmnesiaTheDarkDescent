@@ -36,7 +36,7 @@ namespace hpl {
 	 */
 	cPBuffer::cPBuffer(iLowLevelGraphics* apLowLevelGraphics,bool abShareObjects,bool abUseMipMaps, bool abUseDepth,bool abUseStencil)
 	{
-		#ifdef WIN32
+		#ifdef _WIN32
 		mDeviceContext = 0;
 		mGLContext =0;
 
@@ -89,7 +89,7 @@ namespace hpl {
 
 	cPBuffer::~cPBuffer()
 	{
-		#ifdef WIN32
+		#ifdef _WIN32
 		//This should not be deleted if it is shared.
 		wglDeleteContext(mGLContext);				
 		wglReleasePbufferDCARB(mPBuffer, mDeviceContext);
@@ -108,7 +108,7 @@ namespace hpl {
 	
 	bool cPBuffer::Init(unsigned int alWidth,unsigned int alHeight, cColor aCol)
 	{
-		#ifdef WIN32
+		#ifdef _WIN32
 		unsigned int lFormatNum=0;
 		int lFormat=0;
 
@@ -158,7 +158,7 @@ namespace hpl {
 		wglQueryPbufferARB(mPBuffer, WGL_PBUFFER_HEIGHT_ARB, &mlHeight);
 			
 		//Init some GL stuff with the Buffer.
-		#ifdef WIN32
+		#ifdef _WIN32
 		HDC OldHDC = wglGetCurrentDC();
 		HGLRC OldGLRC = wglGetCurrentContext();
 		#endif
@@ -185,7 +185,7 @@ namespace hpl {
 
 	int cPBuffer::MakeCurrentContext()
 	{
-		#ifdef WIN32
+		#ifdef _WIN32
 		return wglMakeCurrent(mDeviceContext, mGLContext);
 		#else
 		return 0;
@@ -197,7 +197,7 @@ namespace hpl {
 	
 	void cPBuffer::Bind()
 	{
-		#ifdef WIN32
+		#ifdef _WIN32
 		if(!wglBindTexImageARB(mPBuffer, WGL_FRONT_LEFT_ARB))
 		{
 			Error("Error Binding pbuffer...\n");
@@ -210,7 +210,7 @@ namespace hpl {
 	
 	void cPBuffer::UnBind()
 	{
-		#ifdef WIN32
+		#ifdef _WIN32
 		if(wglReleaseTexImageARB(mPBuffer, WGL_FRONT_LEFT_ARB)==false)
 		{
 			Error("Error UnBinding pbuffer...\n");

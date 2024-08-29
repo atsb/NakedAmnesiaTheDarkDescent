@@ -83,7 +83,7 @@ namespace hpl {
 
 		/////////////////////////////////////////
 		// Load file
-		int lLength;
+		int lLength = 0;
 		char *pCharBuffer = NULL;
 		
 		/////////////////////////////////////
@@ -118,7 +118,7 @@ namespace hpl {
 			}
 
 			textBuff.SetPos(0);
-			lLength = textBuff.GetSize();
+			lLength = (int)textBuff.GetSize();
 			pCharBuffer = hplNewArray(char,lLength);
 			textBuff.GetCharArray(pCharBuffer, lLength);
 		}

@@ -17,6 +17,8 @@
  * along with Amnesia: The Dark Descent.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#if 0
+
 #include "impl/MeshLoaderFBX.h"
 
 #include "system/LowLevelSystem.h"
@@ -1535,3 +1537,4 @@ namespace hpl {
 		return lStatus;
 	}
 }
+#endif

@@ -157,24 +157,6 @@ void cLuxCredits::OnLeaveContainer(const tString& asNewContainer)
 
 //-----------------------------------------------------------------------
 
-
-static tString DecryptCryptoStringCode(const tString &asEncStr, cBinaryBuffer &aKeyBuffer)
-{
-	size_t lBuffPos=0;
-	tString sOutStr;
-
-	aKeyBuffer.SetPos(0);
-	for(size_t i=0; i<asEncStr.size(); ++i)
-	{
-		sOutStr +=  asEncStr[i] ^ aKeyBuffer.GetChar();
-		if(++lBuffPos >= aKeyBuffer.GetSize()) aKeyBuffer.SetPos(0);
-	}
-
-	return sOutStr;
-}
-
-//-----------------------------------------------------------------------
-
 void cLuxCredits::Update(float afTimeStep)
 {
 	mfTime += afTimeStep;
@@ -234,19 +216,6 @@ void cLuxCredits::Update(float afTimeStep)
 			else
 			{
 				mlState++;
-				if(mlState == 2)
-				{
-					///////////////////////
-					// If ptest, see if we want to add surprise
-					if(gpBase->mbPTestActivated)
-					{
-						/*mKeyBuffer.SetPos(0);
-						int lCRC = mKeyBuffer.GetCRC(kCRCKey);
-						if(lCRC == kKeyBufferCRC)
-						{
-						}*/
-					}
-				}
 			}
 		}
 		return;
@@ -384,13 +353,6 @@ void cLuxCredits::OnDraw(float afFrameTime)
 			if(mlEndNum==2)	sCode = _W("lke271");
 
 			mpGuiSet->DrawFont(sCode, mpFontNormal, cVector3f(400,560,10),15,cColor(0.65f,1),eFontAlign_Center);
-		}
-		else if(gpBase->mbPTestActivated)
-		{
-			//mKeyBuffer.SetPos(0);
-			//int lCRC = mKeyBuffer.GetCRC(kCRCKey);
-			//if(lCRC != kKeyBufferCRC)
-			//	mpGuiSet->DrawFont(_W("Well done, but far from perfect..."), mpFontNormal, cVector3f(400,560,10),11,cColor(0.65f,1),eFontAlign_Center);
 		}
 	}
 }

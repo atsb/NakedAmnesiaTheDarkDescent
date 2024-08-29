@@ -621,6 +621,22 @@ static void StringResize_Generic(asIScriptGeneric *gen)
 	s->resize(v);
 }
 
+// AngelScript signature:
+// uint string::length() const
+static asUINT StringLength(const string& str)
+{
+	// We don't register the method directly because the return type changes between 32bit and 64bit platforms
+	return (asUINT)str.length();
+}
+
+// AngelScript signature:
+// void string::resize(uint l) 
+static void StringResize(asUINT l, string& str)
+{
+	// We don't register the method directly because the argument types change between 32bit and 64bit platforms
+	str.resize(l);
+}
+
 static bool StringEquals(const std::string& lhs, const std::string& rhs)
 {
 	return lhs == rhs;
@@ -658,16 +674,9 @@ void RegisterScriptString_Native(asIScriptEngine *engine)
 	r = engine->RegisterObjectMethod("string", "const uint8 &opIndex(uint) const", asFUNCTION(StringCharAt), asCALL_CDECL_OBJLAST); assert( r >= 0 );
 
 	// Register the object methods
-	if( sizeof(size_t) == 4 )
-	{
-		r = engine->RegisterObjectMethod("string", "uint length() const", asMETHOD(string,size), asCALL_THISCALL); assert( r >= 0 );
-		r = engine->RegisterObjectMethod("string", "void resize(uint)", asMETHODPR(string,resize,(size_t),void), asCALL_THISCALL); assert( r >= 0 );
-	}
-	else
-	{
-		r = engine->RegisterObjectMethod("string", "uint64 length() const", asMETHOD(string,size), asCALL_THISCALL); assert( r >= 0 );
-		r = engine->RegisterObjectMethod("string", "void resize(uint64)", asMETHODPR(string,resize,(size_t),void), asCALL_THISCALL); assert( r >= 0 );
-	}
+	r = engine->RegisterObjectMethod("string", "uint length() const", asFUNCTION(StringLength), asCALL_CDECL_OBJLAST); assert(r >= 0);
+	r = engine->RegisterObjectMethod("string", "void resize(uint)", asFUNCTION(StringResize), asCALL_CDECL_OBJLAST); assert(r >= 0);
+
 
     // TODO: Add factory  string(const string &in str, int repeatCount)
 

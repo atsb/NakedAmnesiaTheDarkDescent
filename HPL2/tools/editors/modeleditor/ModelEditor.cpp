@@ -175,7 +175,7 @@ bool cModelEditor::MainMenu_ItemClick(iWidget* apWidget, const cGuiMessageData& 
 	else if(apWidget==mpMainMenuImport)
 	{
 		tWStringList vFilters = tWStringList(1,_W("*.dae"));
-		vFilters.push_back(_W("*.fbx"));
+		//vFilters.push_back(_W("*.fbx"));
 		ShowLoadFilePicker(mvLoadFilenames, msLastMeshPath,this, kGuiCallback(MeshImport_Callback), _W("Meshes"), vFilters);
 	}
 	/////////////////////////////////////////////////////////////////
@@ -586,7 +586,7 @@ cWidgetMainMenu* cModelEditor::CreateMainMenu()
 
 	mpMainMenuExit = pItem->AddMenuItem(_W("Quit"));
 	mpMainMenuExit->AddCallback(eGuiMessage_ButtonPressed, this, kGuiCallback(MainMenu_ItemClick));
-#if defined(WIN32)
+#if defined(_WIN32)
 	mpMainMenuExit->AddShortcut(eKeyModifier_Alt, eKey_F4);
 #elif defined(__linux__)
 	mpMainMenuExit->AddShortcut(eKeyModifier_Ctrl, eKey_Q);

@@ -458,11 +458,6 @@ void Exit()
 	{
 #endif
 
-	//Load blackbox
-#ifdef WIN32
-	HINSTANCE hBlackBoxLib = LoadLibrary( "BlackBox.dll" );
-#endif
-
 	cEngineInitVars vars;
 	gpEngine = CreateHPLEngine(eHplAPI_OpenGL, 0, &vars);
 	
@@ -479,10 +474,6 @@ void Exit()
 	Exit();
 	DestroyHPLEngine(gpEngine);
 
-#ifdef WIN32
-	if(hBlackBoxLib) FreeLibrary(hBlackBoxLib);
-#endif
-	
 	return 0;
 }
 

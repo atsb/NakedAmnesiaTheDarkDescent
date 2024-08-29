@@ -17,6 +17,8 @@
  * along with Amnesia: The Dark Descent.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#if 0
+
 #ifndef HPL_LOW_LEVEL_HAPTIC_HAPTX_H
 #define HPL_LOW_LEVEL_HAPTIC_HAPTX_H
 
@@ -163,3 +165,4 @@ namespace hpl {
 
 };
 #endif // HPL_LOW_LEVEL_HAPTIC_H
+#endif

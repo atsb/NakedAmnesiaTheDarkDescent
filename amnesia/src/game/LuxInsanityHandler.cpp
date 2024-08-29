@@ -814,7 +814,7 @@ void cLuxInsanityHandler::StartEvent()
 
 		if(lCurrentEvent == lIdx)
 		{
-			mlCurrentEvent = i;
+			mlCurrentEvent = (int)i;
 			break;
 		}
 		lCurrentEvent++;
@@ -852,7 +852,7 @@ void cLuxInsanityHandler::StartEvent(const tString &asName)
 	{
 		if (mvEvents[i]->GetName() == asName)
 		{
-			lEventIndex = i;
+			lEventIndex = (int)i;
 			break;
 		}
 	}

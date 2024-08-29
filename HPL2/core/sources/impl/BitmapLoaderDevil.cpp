@@ -25,7 +25,7 @@
 #include "system/String.h"
 #include "system/Platform.h"
 
-#ifdef WIN32
+#ifdef _WIN32
 #include <io.h>
 #endif
 
@@ -173,7 +173,7 @@ namespace hpl {
 	}
 	static ILboolean ILAPIENTRY DevilEof(ILHANDLE apHandle)
 	{
-		ILuint OrigPos, FileSize;
+		ILint OrigPos, FileSize;
 
 		// Find out the filesize for checking for the end of file
 		OrigPos = DevilTell(apHandle);
@@ -192,7 +192,7 @@ namespace hpl {
 
 	ILint ILAPIENTRY DevilRead(void *Buffer, ILuint Size, ILuint Number, ILHANDLE Handle)
 	{
-		return fread(Buffer, Size, Number, (FILE*)Handle);
+		return (ILint)fread(Buffer, (size_t)Size, (size_t)Number, (FILE*)Handle);
 	}
 
 	//-----------------------------------------------------------------------

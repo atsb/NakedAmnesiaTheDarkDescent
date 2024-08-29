@@ -20,7 +20,7 @@
 #include "MaterialEditor.h"
 #include "BuildID_MaterialEditor.h"
 
-#ifdef WIN32
+#ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #endif
@@ -33,15 +33,17 @@
 int hplMain(const tString& asCommandLine)
 {
 	//To allow drag and drop:
-	#ifdef WIN32
-	//////////////////////////
-	// Init BlackBox
-		HINSTANCE hBlackBoxLib = LoadLibrary( "BlackBox.dll" );
-		TCHAR buffer[MAX_PATH];
-		HMODULE module = GetModuleHandle(NULL);
-		GetModuleFileName(module, buffer,MAX_PATH);
-		tString sDir = cString::GetFilePath(buffer);
-		SetCurrentDirectory(sDir.c_str());
+	#ifdef _WIN32
+		// BUzer: don't change current directory if the game resources can already be found from here.
+		// This allows debugging from IDE when the .exe file is not in the game's directory.
+		if (!cPlatform::FileExists(L"core\\models\\core_box.dae"))
+		{
+			TCHAR buffer[MAX_PATH];
+			HMODULE module = GetModuleHandle(NULL);
+			GetModuleFileName(module, buffer, MAX_PATH);
+			tString sDir = cString::GetFilePath(buffer);
+			SetCurrentDirectory(sDir.c_str());
+		}
 	#endif
 	cMaterialEditor* pEditor = hplNew(cMaterialEditor,(cString::ReplaceCharTo(asCommandLine,"\"","")));
 
@@ -51,12 +53,6 @@ int hplMain(const tString& asCommandLine)
 	hplDelete(pEditor);
 	DestroyHPLEngine(pEngine);
 	cMemoryManager::LogResults();
-
-	//////////////////////////
-	// Exit BlackBox
-	#ifdef WIN32
-			if(hBlackBoxLib) FreeLibrary(hBlackBoxLib);
-	#endif
 
 	return 0;
 }

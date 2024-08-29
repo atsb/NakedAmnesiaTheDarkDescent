@@ -17,6 +17,8 @@
  * along with Amnesia: The Dark Descent.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#if 0
+
 #ifndef HPL_MESH_LOADER_FBX_H
 #define HPL_MESH_LOADER_FBX_H
 
@@ -169,3 +171,4 @@ namespace hpl {
 
 };
 #endif // HPL_MESH_LOADER_FBX_H
+#endif

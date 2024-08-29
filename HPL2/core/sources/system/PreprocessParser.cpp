@@ -697,8 +697,8 @@ namespace hpl {
 		//Define
 		else if(lKeyword == eParserKeyword_Define)
 		{
-			cParserSymbolVariable *pVarName;
-			cParserSymbolVariable *pVarVal;
+			cParserSymbolVariable *pVarName = NULL;
+			cParserSymbolVariable *pVarVal = NULL;
 			for(int i=0; i<2; ++i)
 			{
 				GetNextSymbol();

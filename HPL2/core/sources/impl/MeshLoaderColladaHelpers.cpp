@@ -1648,11 +1648,11 @@ namespace hpl {
 				if(Geometry.mvArrayVec[i].mbIsInVertex)
 				{
 					if(Geometry.mvArrayVec[i].msType == "NORMAL") {
-						Geometry.mlNormArrayIdx = i;
+						Geometry.mlNormArrayIdx = (int)i;
 						Geometry.mlNormIdxNum = Geometry.mlPosIdxNum;
 					}
 					else if(Geometry.mvArrayVec[i].msType == "TEXCOORD") {
-						Geometry.mlTexArrayIdx = i;
+						Geometry.mlTexArrayIdx = (int)i;
 						Geometry.mlTexIdxNum = Geometry.mlPosIdxNum;
 					}
 				}
@@ -1729,8 +1729,8 @@ namespace hpl {
 						for(int i=0; i< 3; i++)
 						{
 							DataVec[i].mlVtx = vIndexArray[lTriangleAdd + i*lTriElements + Geometry.mlPosIdxNum];
-							DataVec[i].mlNorm = vIndexArray[lTriangleAdd + i*lTriElements + Geometry.mlNormIdxNum];
-							DataVec[i].mlTex = vIndexArray[lTriangleAdd + i*lTriElements + Geometry.mlTexIdxNum];
+							DataVec[i].mlNorm = Geometry.mlNormIdxNum >= 0 ? vIndexArray[lTriangleAdd + i*lTriElements + Geometry.mlNormIdxNum] : 0;
+							DataVec[i].mlTex = Geometry.mlTexIdxNum >= 0 ? vIndexArray[lTriangleAdd + i*lTriElements + Geometry.mlTexIdxNum] : 0;
 						}
 					}
 

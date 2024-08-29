@@ -100,7 +100,7 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 	
 	bool cGuiRenderObjectCompare::operator()(	const cGuiRenderObject& aObjectA, 
-												const cGuiRenderObject& aObjectB)
+												const cGuiRenderObject& aObjectB) const
 	{
 		//Z
 		float fZA = aObjectA.mvPos.z;
@@ -198,14 +198,14 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	bool cGuiGlobalShortcut::ProcessKeyPress(const cKeyPress& aKey)
+	bool cGuiGlobalShortcut::DoesAcceptKeyPress(const cKeyPress& aKey)
 	{
 		if(IsEnabled()==false ||
 			mKey.mlModifier != aKey.mlModifier ||
 			mKey.mKey != aKey.mKey)
 			return false;
 
-		return Exec();
+		return true;
 	}
 
 	//-----------------------------------------------------------------------
@@ -1134,8 +1134,8 @@ namespace hpl {
 
 	cGuiPopUpColorPicker* cGuiSet::CreatePopUpColorPicker( cColor* apDestColor, const cVector3f& avPos,  void *apCallbackObject, tGuiCallbackFunc apCallback)
 	{
-		cGuiPopUpColorPicker* pPicker = hplNew( cGuiPopUpColorPicker,(this, mpSkin, avPos, apDestColor, apCallbackObject, apCallback));
-		
+		cGuiPopUpColorPicker* pPicker = hplNew(cGuiPopUpColorPicker, (mpGraphics, this, apDestColor, apCallbackObject, apCallback, NULL, NULL));
+
 		return pPicker;
 	}
 	
@@ -2125,15 +2125,19 @@ namespace hpl {
 
 		if(bRet==false)
 		{
-			// Steal focus from current widget
-			iWidget* pFocusedWidget = mpFocusedWidget;
-			SetFocusedWidget(NULL);
+			auto shortcut = FindShortcut(tData.mKeyPress);
+			if(shortcut)
+			{
+				// Steal focus from current widget
+				iWidget* pFocusedWidget = mpFocusedWidget;
+				SetFocusedWidget(NULL);
 
-			bRet = ExecShortcut(tData.mKeyPress);
+				bRet = shortcut->Exec();
 
-			// Restore focus if shortcut did not set own
-			if(mpFocusedWidget==NULL)
-                SetFocusedWidget(pFocusedWidget);
+				// Restore focus if shortcut did not set own
+				if(mpFocusedWidget == NULL)
+					SetFocusedWidget(pFocusedWidget);
+			}
 		}
 		
 		if(bRet==false)
@@ -2473,19 +2477,17 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	bool cGuiSet::ExecShortcut(const cKeyPress& aKeyPress)
+	cGuiGlobalShortcut* cGuiSet::FindShortcut(const cKeyPress& aKeyPress)
 	{
-		bool bRet = false;
 		tShortcutListIt it = mlstShortcuts.begin();
 		for(;it!=mlstShortcuts.end();++it)
 		{
 			cGuiGlobalShortcut* pShortcut = *it;
-			bRet = pShortcut->ProcessKeyPress(aKeyPress);
-			if(bRet)
-				break;
+			if(pShortcut->DoesAcceptKeyPress(aKeyPress))
+				return pShortcut;
 		}
 
-		return bRet;
+		return NULL;
 	}
 
 	//-----------------------------------------------------------------------

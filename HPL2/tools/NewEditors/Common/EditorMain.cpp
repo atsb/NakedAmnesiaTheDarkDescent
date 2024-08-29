@@ -41,9 +41,8 @@ using namespace hpl;
 int hplMain(const tString& asCommandLine)
 {
 	//////////////////////////
-	// Init BlackBox and set up drag and drop
+	// Set up drag and drop
 	#ifdef WIN32
-		HINSTANCE hBlackBoxLib = LoadLibrary("BlackBox.dll");
 		TCHAR buffer[MAX_PATH];
 		HMODULE module = GetModuleHandle(NULL);
 		GetModuleFileName(module, buffer,MAX_PATH);
@@ -73,12 +72,6 @@ int hplMain(const tString& asCommandLine)
 	}
 
 	cMemoryManager::LogResults();
-
-	//////////////////////////
-	// Exit BlackBox
-	#ifdef WIN32
-		if(hBlackBoxLib) FreeLibrary(hBlackBoxLib);
-	#endif
 
 	return 0;
 }

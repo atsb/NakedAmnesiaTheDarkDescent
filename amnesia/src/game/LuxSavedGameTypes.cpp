@@ -356,8 +356,8 @@ void cLuxEffectHandler_SaveData::FromEffectHandler(cLuxEffectHandler *apEffects)
 	{
 		if(i == eLuxGlobalVolumeType_Commentary || i == eLuxGlobalVolumeType_DebugMenu)continue;
 
-		mvGlobalSoundVolumeMul[i].FromEntry(pSoundHandler->GetGlobalVolumeSettingsHandler()->GetEntry(i, false) );
-		mvGlobalSoundSpeedMul[i].FromEntry(pSoundHandler->GetGlobalSpeedSettingsHandler()->GetEntry(i, false) );
+		mvGlobalSoundVolumeMul[i].FromEntry(pSoundHandler->GetGlobalVolumeSettingsHandler()->GetEntry((int)i, false) );
+		mvGlobalSoundSpeedMul[i].FromEntry(pSoundHandler->GetGlobalSpeedSettingsHandler()->GetEntry((int)i, false) );
 	}
 }
 
@@ -421,14 +421,14 @@ void cLuxEffectHandler_SaveData::ToEffectHandler(cLuxMap *apMap, cLuxEffectHandl
 	{
 		if(i == eLuxGlobalVolumeType_Commentary || i == eLuxGlobalVolumeType_DebugMenu) continue;
 
-		mvGlobalSoundVolumeMul[i].ToEntry(i, pSoundHandler->GetGlobalVolumeSettingsHandler() );
+		mvGlobalSoundVolumeMul[i].ToEntry((int)i, pSoundHandler->GetGlobalVolumeSettingsHandler() );
 	}
 	
 	for(size_t i=0; i<mvGlobalSoundSpeedMul.Size(); ++i)
 	{
 		if(i == eLuxGlobalVolumeType_Commentary || i == eLuxGlobalVolumeType_DebugMenu) continue;
 
-		mvGlobalSoundSpeedMul[i].ToEntry(i, pSoundHandler->GetGlobalSpeedSettingsHandler() );
+		mvGlobalSoundSpeedMul[i].ToEntry((int)i, pSoundHandler->GetGlobalSpeedSettingsHandler() );
 	}
 }
 
@@ -494,7 +494,7 @@ void cLuxMusicHandler_SaveData::FromMusicHandler(cLuxMusicHandler *apMusic)
 		mfCurrentMusicMaxVolume = pMusicEntry->mfMaxVolume;
 		mfCurrentMusicVolume = pMusicEntry->mfVolume;
 		mfCurrentMusicVolumeAdd = pMusicEntry->mfVolumeAdd;
-		mfCurrentMusicTime = pMusicEntry->mpStream->GetElapsedTime();
+		mfCurrentMusicTime = (float)pMusicEntry->mpStream->GetElapsedTime();
 		mbCurrentMusicLoop = pMusicEntry->mbLoop;
 	}
 	else

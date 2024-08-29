@@ -28,7 +28,7 @@
     <Filter Include="Common\EntityWrappers\Types">
       <UniqueIdentifier>{3cbebf8d-ce7f-4cc4-ba92-5b18d5b9f31c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="modeleditor">
+    <Filter Include="ModelEditor">
       <UniqueIdentifier>{f97f8036-7da8-47f2-930e-138b66d9d6ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -307,34 +307,34 @@
       <Filter>Common\EntityWrappers\Types</Filter>
     </ClCompile>
     <ClCompile Include="BuildID_ModelEditor_Win32.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="ModelEditor.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="ModelEditorActions.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="ModelEditorLowerToolbar.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="ModelEditorMain.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="ModelEditorWindowAnimations.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="ModelEditorWindowOutline.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="ModelEditorWindowPhysicsTest.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="ModelEditorWindowUserSettings.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="ModelEditorWorld.cpp">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClCompile>
     <ClCompile Include="..\common\DirectoryHandler.cpp">
       <Filter>Common</Filter>
@@ -621,42 +621,37 @@
       <Filter>Common\EntityWrappers\Types</Filter>
     </ClInclude>
     <ClInclude Include="BuildID_ModelEditor.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="ModelEditor.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="ModelEditorActions.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="ModelEditorLowerToolbar.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="ModelEditorTypes.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="ModelEditorWindowAnimations.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="ModelEditorWindowOutline.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="ModelEditorWindowPhysicsTest.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="ModelEditorWindowUserSettings.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="ModelEditorWorld.h">
-      <Filter>modeleditor</Filter>
+      <Filter>ModelEditor</Filter>
     </ClInclude>
     <ClInclude Include="..\common\DirectoryHandler.h">
       <Filter>Common</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="buildcounterinput.txt">
-      <Filter>modeleditor</Filter>
-    </None>
   </ItemGroup>
 </Project>

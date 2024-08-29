@@ -153,7 +153,7 @@ void cLuxInputMenuEntry::RetrieveInitialValue()
 	cInput* pInput = gpBase->mpEngine->GetInput();
 	cAction* pAction = pInput->GetAction(mlActionId);
 
-	int i=0;
+	size_t i=0;
 	for(;i<pAction->GetSubActionNum();++i)
 	{
 		if(i>=eInputMenuEntryPos_LastEnum)
@@ -1009,8 +1009,8 @@ void cLuxMainMenu_KeyConfig::CreateGui()
 			cLuxInputMenuEntry* pPrevEntry = NULL;
 			cLuxInputMenuEntry* pNextEntry = NULL;
 
-			int lPrev = i-1;
-			int lNext = i+1;
+			int lPrev = (int)i-1;
+			int lNext = (int)i+1;
 
 			if(lPrev>=0)
 				pPrevEntry = vInputs[lPrev];

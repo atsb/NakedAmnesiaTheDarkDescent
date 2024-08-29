@@ -19,7 +19,7 @@
 
 /////////////////////////
 // Multi platform personal directory specifics.
-#if defined(WIN32)
+#if defined(_WIN32)
 #define PERSONAL_RELATIVEROOT _W("")
 #define PERSONAL_RELATIVEPIECES
 #define PERSONAL_RELATIVEPIECES_COUNT 0

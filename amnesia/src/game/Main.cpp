@@ -20,7 +20,7 @@
 #include "LuxBase.h"
 
 //---------------------------------------
-#ifdef WIN32
+#ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #endif
@@ -33,13 +33,6 @@ cLuxBase* gpBase = NULL;
 
 int hplMain(const tString &asCommandline)
 {
-	//////////////////////////
-	// Init BlackBox
-	#ifdef WIN32
-		HINSTANCE hBlackBoxLib = LoadLibrary( "BlackBox.dll" );
-	#endif
-
-
 	//////////////////////////
 	// Game creation and exit
 	gpBase = hplNew( cLuxBase, ());
@@ -63,12 +56,6 @@ int hplMain(const tString &asCommandline)
 	hplDelete(gpBase);
 
 	cMemoryManager::LogResults();
-
-	//////////////////////////
-	// Exit BlackBox
-	#ifdef WIN32
-			if(hBlackBoxLib) FreeLibrary(hBlackBoxLib);
-	#endif
 
 	return 0;
 }

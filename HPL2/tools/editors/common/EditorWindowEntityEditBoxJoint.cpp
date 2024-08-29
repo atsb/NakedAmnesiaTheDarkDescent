@@ -903,7 +903,7 @@ kGuiCallbackDeclaredFuncEnd(cEditorWindowEntityEditBoxJoint, Button_OnPressed);
 
 bool cEditorWindowEntityEditBoxJoint::BrowseButton_OnPressed(iWidget* apWidget, const cGuiMessageData& aData)
 {
-	tGuiCallbackFunc pFunc;
+	tGuiCallbackFunc pFunc = NULL;
 
 	if(apWidget == mpButtonMoveSoundBrowse)
 	{
@@ -955,8 +955,8 @@ void cEditorWindowEntityEditBoxJoint::AttachBodyToJoint(int alBodyType)
 
 	///////////////////////////////////////////////////////////
 	// Get old and new bodies
-	cEntityWrapperBody* pOldBody;
-	cEntityWrapperBody* pOtherBody;
+	cEntityWrapperBody* pOldBody = NULL;
+	cEntityWrapperBody* pOtherBody = NULL;
 	switch(alBodyType)
 	{
 	case eJointInt_ParentID:

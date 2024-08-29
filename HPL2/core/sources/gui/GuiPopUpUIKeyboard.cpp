@@ -310,16 +310,16 @@ namespace hpl {
 		// Set up focus navigation
 		for(size_t i=0; i<vKeyMatrix.size(); ++i)
 		{
-			int lVPrev = i-1;
-			int lVNext = i+1;
+			int lVPrev = (int)i-1;
+			int lVNext = (int)i+1;
 
 			const tWidgetVec vRow = vKeyMatrix[i];
 			for(size_t j=0; j<vRow.size(); ++j)
 			{
 				iWidget* pWidget = vRow[j];
 
-				int lHPrev = j-1;
-				int lHNext = j+1;
+				int lHPrev = (int)j-1;
+				int lHNext = (int)j+1;
 
 				iWidget* pUpper = NULL;
 				iWidget* pRight = NULL;

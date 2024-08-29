@@ -67,24 +67,24 @@ namespace hpl {
 		static bool mbLogDeletion;
 
 		template<class T>
-		static T* DeleteAndReturn(T* apData)
-		{ 
+		static void RemoveAndDelete(T* apData, const char* apFileString, int alLine)
+		{
+			RemovePointer(apData, apFileString, alLine);
 			delete apData;
-			return apData;
 		}
 
 		template<class T>
-		static T* DeleteArrayAndReturn(T* apData)
-		{ 
-			delete [] apData;
-			return apData;
+		static void RemoveAndDeleteArray(T* apData, const char* apFileString, int alLine)
+		{
+			RemovePointer(apData, apFileString, alLine);
+			delete[] apData;
 		}
 
 		template<class T>
-		static T* FreeAndReturn(T* apData)
-		{ 
+		static void RemoveAndFree(T* apData, const char* apFileString, int alLine)
+		{
+			RemovePointer(apData, apFileString, alLine);
 			free(apData);
-			return apData;
 		}
 
 		static void SetLogCreation(bool abX);
@@ -111,23 +111,17 @@ namespace hpl {
 			hpl::cMemoryManager::AddPointer(hpl::cAllocatedPointer(malloc( amount ) ,__FILE__,__LINE__,amount))
 
 	#define hplRealloc(data, amount) \
-		hpl::cMemoryManager::UpdatePointer(data, hpl::cAllocatedPointer(realloc( data, amount ) ,__FILE__,__LINE__,amount))
+			hpl::cMemoryManager::UpdatePointer(data, hpl::cAllocatedPointer(realloc( data, amount ) ,__FILE__,__LINE__,amount))
 
-
-	#define hplDelete(data){ \
-			hpl::cMemoryManager::RemovePointer(hpl::cMemoryManager::DeleteAndReturn(data),__FILE__,__LINE__); \
-			}//delete data;
-				
+	#define hplDelete(data) \
+			hpl::cMemoryManager::RemoveAndDelete(data,__FILE__,__LINE__)
 		
-	#define hplDeleteArray(data){ \
-			hpl::cMemoryManager::RemovePointer(hpl::cMemoryManager::DeleteArrayAndReturn(data),__FILE__,__LINE__); \
-			}//delete [] data;
+	#define hplDeleteArray(data) \
+			hpl::cMemoryManager::RemoveAndDeleteArray(data,__FILE__,__LINE__)
 
-	#define hplFree(data){ \
-			hpl::cMemoryManager::RemovePointer(hpl::cMemoryManager::FreeAndReturn(data),__FILE__,__LINE__); \
-			}//free(data);
+	#define hplFree(data) \
+			hpl::cMemoryManager::RemoveAndFree(data,__FILE__,__LINE__)
 
-		
 #else
 	#define hplNew(classType, constructor) \
 			new classType constructor 
@@ -142,13 +136,13 @@ namespace hpl {
 			realloc( data, amount )
 	
 	#define hplDelete(data) \
-		delete data;
+			delete data
 
 	#define hplDeleteArray(data) \
-		delete [] data;
+			delete [] data
 
 	#define hplFree(data) \
-		free(data);
+			free(data)
 
 #endif
 

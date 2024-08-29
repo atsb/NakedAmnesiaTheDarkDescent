@@ -75,7 +75,7 @@ void cLuxMainMenu_StartGame::CreateGui()
 	vPos.y = mpWindow->GetSize().y - 35;
 
 	// Start Game
-	cWidgetButton* pButton = mpGuiSet->CreateWidgetButton(vPos, cVector2f(fButtonWidth * 2.0 + fButtonSepp, 30), kTranslate("MainMenu", "Start Game"), mpWindow);
+	cWidgetButton* pButton = mpGuiSet->CreateWidgetButton(vPos, cVector2f(fButtonWidth * 2.0f + fButtonSepp, 30), kTranslate("MainMenu", "Start Game"), mpWindow);
 	pButton->AddCallback(eGuiMessage_ButtonPressed,this, kGuiCallback(PressStartGame));
 	pButton->AddCallback(eGuiMessage_UIButtonPress,this, kGuiCallback(UIPressStart));
 	mpStartButton = pButton;
@@ -96,7 +96,7 @@ void cLuxMainMenu_StartGame::CreateGui()
 
 	cVector3f vButtonPosition = cVector3f(
 		(vPos.x / 2.0f) - (fButtonWidth / 2.0f), 
-		(fBorderSize + (mvWindowSize.y / 4.0)) - (fButtonHeight / 2.0), 
+		(fBorderSize + (mvWindowSize.y / 4.0f)) - (fButtonHeight / 2.0f), 
 		0.1f);
 	vButtonPosition.z = 0.1f;
 

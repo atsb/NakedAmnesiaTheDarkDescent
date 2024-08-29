@@ -154,7 +154,7 @@ namespace hpl {
 	{
 		if(apObj==NULL || apCallback==NULL) return false;
 
-		iWidget *pPreCallAtt, *pPreCallFocus, *pPreCallDefaultUIFocus, *pPostCallAtt, *pPostCallFocus, *pPostCallDefaultUIFocus;
+		iWidget *pPreCallAtt = NULL, *pPreCallFocus = NULL, *pPreCallDefaultUIFocus = NULL, *pPostCallAtt, *pPostCallFocus, *pPostCallDefaultUIFocus;
 		
 		if(abRunFocusChangeChecks)
 		{

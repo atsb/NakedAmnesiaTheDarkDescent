@@ -21,7 +21,7 @@
 #define HPL_P_BUFFER_H
 
 #include <GL/glew.h>
-#ifdef WIN32
+#ifdef _WIN32
 #include <GL/wglew.h>
 #endif
 #include <vector>
@@ -45,7 +45,7 @@ namespace hpl {
 		void UnBind();
 
 	private:
-		#ifdef WIN32
+		#ifdef _WIN32
 		HDC         mDeviceContext;
 		HGLRC       mGLContext;
 		HPBUFFERARB mPBuffer;

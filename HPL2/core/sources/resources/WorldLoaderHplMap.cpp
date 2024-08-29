@@ -750,7 +750,7 @@ namespace hpl {
 			binBuff.AddBool(pShapeBody->mbCharCollider);
 			binBuff.AddBool(pShapeBody->mbBlocksLight);
 
-			binBuff.AddInt32(pShapeBody->mvColliders.size());
+			binBuff.AddInt32((int)pShapeBody->mvColliders.size());
 
 			for(int i=0; i<pShapeBody->mvColliders.size(); ++i)
 			{

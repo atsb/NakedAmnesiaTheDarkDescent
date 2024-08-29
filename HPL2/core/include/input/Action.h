@@ -118,8 +118,8 @@ namespace hpl {
 		*/
 		void Update(float afTimeStep);
 
-		iSubAction *GetSubAction(int alIdx){ return mvSubActions[alIdx];}
-		int GetSubActionNum(){ return (int)mvSubActions.size();}
+		iSubAction *GetSubAction(size_t alIdx){ return mvSubActions[alIdx];}
+		size_t GetSubActionNum(){ return mvSubActions.size();}
 
 		
 		const tString& GetName(){ return msName;}

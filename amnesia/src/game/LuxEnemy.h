@@ -431,8 +431,8 @@ public:
 	bool IsAtLastPatrolNode();
 	void IncCurrentPatrolNode(bool abLoopIfAtEnd);
 
-	cLuxEnemyPatrolNode* GetPatrolNode(int alIdx){ return &mvPatrolNodes[alIdx];}
-	int GetPatrolNodeNum(){ return (int)mvPatrolNodes.size();}
+	cLuxEnemyPatrolNode* GetPatrolNode(size_t alIdx){ return &mvPatrolNodes[alIdx];}
+	size_t GetPatrolNodeNum(){ return mvPatrolNodes.size();}
 
 	//////////////////////
 	//Water

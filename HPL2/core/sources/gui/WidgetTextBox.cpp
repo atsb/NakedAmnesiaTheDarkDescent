@@ -1154,7 +1154,7 @@ namespace hpl {
 		if(HasFocus() && aData.mlVal==eUIButton_Primary)
 		{
 			mlSelectedTextEnd = 0;
-			SetMarkerPos(msText.length());
+			SetMarkerPos((int)msText.length());
 			mpSet->CreatePopUpUIKeyboard(this);
 
 			return true;
@@ -1189,7 +1189,7 @@ namespace hpl {
 		mbUIKeyboardOpen = true;
 
 		mlSelectedTextEnd = 0;
-		SetMarkerPos(msText.length());
+		SetMarkerPos((int)msText.length());
 	}
 	
 	//-----------------------------------------------------------------------

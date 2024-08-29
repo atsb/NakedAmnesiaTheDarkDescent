@@ -17,6 +17,8 @@
  * along with Amnesia: The Dark Descent.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#if 0
+
 #include "impl/FmodSoundChannel.h"
 #include "impl/FmodSoundData.h"
 #include "resources/SoundManager.h"
@@ -211,3 +213,4 @@ namespace hpl {
 	//-----------------------------------------------------------------------
 
 }
+#endif

@@ -1539,7 +1539,7 @@ void cEntityWrapperParticleEmitter::SetMaterial(const tString& asX)
 	cFileSearcher* pSearcher = pEditor->GetEngine()->GetResources()->GetFileSearcher();
 
 	tString sSanitizedFile = asX;
-	int lLength = sSanitizedFile.size()-1;
+	int lLength = (int)sSanitizedFile.size()-1;
 	if(lLength>=0 && sSanitizedFile[lLength]==' ') sSanitizedFile = cString::Sub(sSanitizedFile, 0, lLength);
 
 	tWString sMatFile = pEditor->GetPathRelToWD(pSearcher->GetFilePath(sSanitizedFile));

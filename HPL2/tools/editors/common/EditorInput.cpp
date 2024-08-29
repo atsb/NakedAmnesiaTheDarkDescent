@@ -91,7 +91,7 @@ void iEditorInput::AddCallback(eEditorInputCallback aCallback, void* apCallbackO
 		msg = eGuiMessage_ButtonPressed;
 		break;
 	default:
-		break;
+		return;
 	}
 
 	mpHandle->AddCallback(msg, apCallbackObject, apCallback);
@@ -218,10 +218,13 @@ cEditorInputText::cEditorInputText(iEditorWindow* apWindow,
 								   const tWStringList& alstInputLabels) : iEditorInputLabeled(apWindow, avPos, asLabel, asName, apParent)
 {
 	tWStringList::const_iterator itLabels = alstInputLabels.begin();
-	for(int i=0;i<alAmount;++i,++itLabels)
+	for(int i=0;i<alAmount;++i)
 	{
 		// Setup Label
-		tWString sLabel = (itLabels==alstInputLabels.end())?_W(""):*itLabels;
+		tWString sLabel;
+		if (itLabels != alstInputLabels.end()) {
+			sLabel = *itLabels++;
+		}
 		cWidgetLabel* pL = mpSet->CreateWidgetLabel(0,0,sLabel, mpHandle);
 		mvL.push_back(pL);
 		pL->SetSize(cVector2f(pL->GetDefaultFontType()->GetLength(mvFontSize, sLabel.c_str()), mvFontSize.y));
@@ -586,13 +589,13 @@ bool cEditorInputFile::BrowseButton_OnPressed(iWidget* apWidget, const cGuiMessa
 		case eEditorResourceType_Model:
 			sCatName = _W("Models");
 			lstCatString.push_back(_W("*.dae"));
-			lstCatString.push_back(_W("*.fbx"));
+			//lstCatString.push_back(_W("*.fbx"));
 			pEditor->ShowLoadFilePicker(mvTempLoadedFiles, cString::GetFilePathW(msTempLoadedFile), this, kGuiCallback(Browser_OnOkay), sCatName, lstCatString);
 			break;
 		case eEditorResourceType_ModelAnim:
 			sCatName = _W("Animations");
 			lstCatString.push_back(_W("*.dae_anim"));
-			lstCatString.push_back(_W("*.fbx"));
+			//lstCatString.push_back(_W("*.fbx"));
 			pEditor->ShowLoadFilePicker(mvTempLoadedFiles, cString::GetFilePathW(msTempLoadedFile), this, kGuiCallback(Browser_OnOkay), sCatName, lstCatString);
 			break;
 		case eEditorResourceType_Sound:

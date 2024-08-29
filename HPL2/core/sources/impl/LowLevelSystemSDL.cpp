@@ -20,7 +20,7 @@
 //#include <vld.h>
 //Use this to check for memory leaks!
 
-#ifdef WIN32
+#ifdef _WIN32
 #pragma comment(lib, "angelscript.lib")
 #define UNICODE
 #include <windows.h>
@@ -51,7 +51,7 @@
 
 #include "system/String.h"
 
-#ifndef WIN32
+#ifndef _WIN32
 #include <clocale>
 #include <langinfo.h>
 #include <unistd.h>
@@ -66,9 +66,13 @@
 #ifndef IGNORE_HPL_MAIN
 extern int hplMain(const hpl::tString &asCommandLine);
 
-#ifdef WIN32
+#ifdef _WIN32
 #include <windows.h>
-int WINAPI WinMain(	HINSTANCE hInstance,  HINSTANCE hPrevInstance,LPSTR	lpCmdLine, int nCmdShow)
+int WINAPI WinMain(
+		_In_ HINSTANCE hInstance,
+		_In_opt_ HINSTANCE hPrevInstance,
+		_In_ LPSTR lpCmdLine,
+		_In_ int nCmdShow)
 {
 	return hplMain(lpCmdLine);
 }
@@ -146,6 +150,10 @@ namespace hpl {
 
 	void cLogWriter::Write(const tString& asMessage)
 	{
+#ifdef _WIN32
+		OutputDebugStringA(asMessage.c_str());
+#endif
+
 		if(!mpFile) ReopenFile();
 		
 		if(mpFile)
@@ -179,7 +187,7 @@ namespace hpl {
 	{
 		if(mpFile) fclose(mpFile);
 						
-		#ifdef WIN32
+		#ifdef _WIN32
 			mpFile = _wfopen(msFileName.c_str(),_W("w"));
 		#else
 			mpFile = fopen(cString::To8Char(msFileName).c_str(),"w");

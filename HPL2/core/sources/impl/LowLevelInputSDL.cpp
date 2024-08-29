@@ -37,7 +37,7 @@
 #include "SDL/SDL_syswm.h"
 #endif
 
-#if defined WIN32 && !SDL_VERSION_ATLEAST(2,0,0)
+#if defined _WIN32 && !SDL_VERSION_ATLEAST(2,0,0)
 #include <Windows.h>
 #include <Dbt.h>
 #endif
@@ -99,7 +99,7 @@ namespace hpl {
 		mlstEvents.clear();
 		while(SDL_PollEvent(&sdlEvent)!=0)
 		{
-#if defined WIN32 && !SDL_VERSION_ATLEAST(2,0,0)
+#if defined _WIN32 && !SDL_VERSION_ATLEAST(2,0,0)
 			if(sdlEvent.type==SDL_SYSWMEVENT)
 			{
 				SDL_SysWMmsg* pMsg = sdlEvent.syswm.msg;

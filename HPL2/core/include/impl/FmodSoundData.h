@@ -17,6 +17,8 @@
  * along with Amnesia: The Dark Descent.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#if 0
+
 #ifndef HPL_FMOD_SOUND_DATA_H
 #define HPL_FMOD_SOUND_DATA_H
 
@@ -50,3 +52,4 @@ namespace hpl {
 	};
 };
 #endif // HPL_FMOD_SOUND_DATA_H
+#endif

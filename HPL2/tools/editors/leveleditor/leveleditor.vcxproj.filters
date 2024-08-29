@@ -716,10 +716,6 @@
     <ClInclude Include="..\common\EdWorld.h">
       <Filter>NewStuff</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="buildcounterinput.txt">
-      <Filter>LevelEditor</Filter>
-    </None>
+    <ClInclude Include="..\..\LuxBasePersonal.h" />
   </ItemGroup>
 </Project>

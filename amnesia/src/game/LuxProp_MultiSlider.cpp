@@ -310,7 +310,7 @@ void cLuxProp_MultiSlider::UpdateCheckNewState(float afPos, float afTimeStep)
 		if(fDistToState <= mfStickToStateMaxDist)
 		{
 			//TODO: Move lever to state ??
-			ChangeState(i, true);
+			ChangeState((int)i, true);
 			break;
 		}
 	}

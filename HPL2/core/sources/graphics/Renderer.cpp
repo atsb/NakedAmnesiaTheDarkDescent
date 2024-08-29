@@ -86,7 +86,7 @@ namespace hpl {
 
 	//-----------------------------------------------------------------------
 
-	bool cRendererNodeSortFunc::operator()(iRenderableContainerNode* apNodeA, iRenderableContainerNode* apNodeB)
+	bool cRendererNodeSortFunc::operator()(iRenderableContainerNode* apNodeA, iRenderableContainerNode* apNodeB) const
 	{
 		if(apNodeA->IsInsideView() != apNodeB->IsInsideView())
 		{

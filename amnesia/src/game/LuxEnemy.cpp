@@ -495,7 +495,7 @@ iLuxEnemy::iLuxEnemy(const tString &asName, int alID, cLuxMap *apMap, eLuxEnemyT
 	
 	mfEnemyDarknessGlowMaxDistance = gpBase->mpGameCfg->GetFloat("Enemy", "EnemyDarknessGlowMaxDistance",0);
 
-	mfPlayerInDarknessLightLevel = 0.35;
+	mfPlayerInDarknessLightLevel = 0.35f;
 	mfCrouchVisibleRangeMul = 0.5f;
 
 	m_mtxCharMeshOffset = cMatrixf::Identity;
@@ -1535,7 +1535,7 @@ void iLuxEnemy::UpdateCheckStuckAtDoor(float afTimeStep)
 	mlStuckDoorID = -1;
 
 	cBoundingVolume *pBV = mpCharBody->GetCurrentBody()->GetBoundingVolume();
-	iLuxProp *pSwingDoor;
+	iLuxProp *pSwingDoor = NULL;
 
 	
 	////////////////////////////////

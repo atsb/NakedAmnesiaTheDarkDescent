@@ -851,7 +851,7 @@ void cLuxJournal::OpenNote(cLuxNote *apNote, bool abNarration)
 	{
 		if(mvNotes[i] == apNote)
 		{
-			mlLastReadTextEntry = i;
+			mlLastReadTextEntry = (int)i;
 			break;
 		}
 	}
@@ -910,8 +910,8 @@ void cLuxJournal::SetDiaryAsLastRead(cLuxDiary *apDiary)
 		{
 			if(apDiary == pCont->mvDiaries[entry])
 			{
-				mlLastReadTextCat = cat;
-				mlLastReadTextEntry = entry;
+				mlLastReadTextCat = (int)cat;
+				mlLastReadTextEntry = (int)entry;
 				break;
 			}
 		}
@@ -1479,8 +1479,8 @@ void cLuxJournal::CreateMainGui()
 
 
 
-			int lPrev = i-1;
-			int lNext = i+1;
+			int lPrev = (int)i-1;
+			int lNext = (int)i+1;
 			
 			if(lPrev>=0)
 				pWidget->SetFocusNavigation(eUIArrow_Up, vLabels[lPrev]);
@@ -1570,8 +1570,8 @@ void cLuxJournal::CreateNotesGui()
 		for(size_t j=0; j<pListPage->mvEntries.size(); ++j)
 		{
 			cLuxJournal_ListEntry* pListEntry = &pListPage->mvEntries[j];
-			int lPrev = j-1;
-			int lNext = j+1;
+			int lPrev = (int)j-1;
+			int lNext = (int)j+1;
 
 			iWidget* pLabel = pListEntry->mlstWidgets.front();
 			
@@ -1589,7 +1589,7 @@ void cLuxJournal::CreateNotesGui()
 
 	////////////////////////
 	// Set start page
-	mlCurrentNoteListPage[lListIdx] = mvNoteListPages[lListIdx].size()-1;
+	mlCurrentNoteListPage[lListIdx] = (int)mvNoteListPages[lListIdx].size()-1;
 }
 
 //-----------------------------------------------------------------------
@@ -1675,8 +1675,8 @@ void cLuxJournal::CreateDiariesGui()
 		for(size_t j=0; j<pListPage->mvEntries.size(); ++j)
 		{
 			cLuxJournal_ListEntry* pListEntry = &pListPage->mvEntries[j];
-			int lPrev = j-1;
-			int lNext = j+1;
+			int lPrev = (int)j-1;
+			int lNext = (int)j+1;
 
 			iWidget* pLabel = pListEntry->mlstWidgets.front();
 			
@@ -1694,7 +1694,7 @@ void cLuxJournal::CreateDiariesGui()
 
 	////////////////////////
 	// Set start page
-	mlCurrentNoteListPage[lListIdx] = mvNoteListPages[lListIdx].size()-1;
+	mlCurrentNoteListPage[lListIdx] = (int)mvNoteListPages[lListIdx].size()-1;
 }
 
 //-----------------------------------------------------------------------
@@ -1791,7 +1791,7 @@ void cLuxJournal::CreateQuestNotesGui()
 
 	////////////////////////
 	// Set start page
-	mlCurrentNoteListPage[lListIdx] = mvNoteListPages[lListIdx].size()-1;
+	mlCurrentNoteListPage[lListIdx] = (int)mvNoteListPages[lListIdx].size()-1;
 }
 
 //-----------------------------------------------------------------------

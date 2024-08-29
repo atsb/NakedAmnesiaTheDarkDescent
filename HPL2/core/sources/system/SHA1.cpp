@@ -234,7 +234,7 @@ namespace hpl {
 
 	void SHA1::Input(const tString &message)
 	{
-		Input((const unsigned char *)message.data(), message.length());
+		Input((const unsigned char *)message.data(), (unsigned int)message.length());
 	}
 
 	void SHA1::Input(const tWString &message)

@@ -220,7 +220,7 @@ void cLuxSaveHandler::SaveGameToFile(const tWString& asFile, bool abSaveSnapshot
 	if(abSaveSnapshot)
 	{
 		tWString sFileExt = cString::GetFileExtW(asFile);
-		tWString sFileName = cString::SubW(asFile,0, asFile.size()-(sFileExt.size()+1)) +  _W(".jpg");
+		tWString sFileName = cString::SubW(asFile,0, (int)asFile.size()-((int)sFileExt.size()+1)) +  _W(".jpg");
 		
 		cEngine *pEngine = gpBase->mpEngine;
 		

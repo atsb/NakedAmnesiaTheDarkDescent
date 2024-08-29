@@ -103,8 +103,8 @@ void cLuxPropLoader_Item::LoadInstanceVariables(iLuxProp *apProp, cResourceVarsO
 	if(pItem->mItemType == eLuxItemType_Note)
 	{
 		pItem->msVal = apInstanceVars->GetVarString("NoteText", "");
-		pItem->mfAmount = apInstanceVars->GetVarBool("OpenNoteInJournal", true) ? 1 : -1;
-		pItem->mfAmount *= apInstanceVars->GetVarBool("UseNarration", false) ? 2 : 1;
+		pItem->mfAmount = apInstanceVars->GetVarBool("OpenNoteInJournal", true) ? 1.0f : -1.0f;
+		pItem->mfAmount *= apInstanceVars->GetVarBool("UseNarration", false) ? 2.0f : 1.0f;
 	}
 	///////////////////////////
 	// Diary
