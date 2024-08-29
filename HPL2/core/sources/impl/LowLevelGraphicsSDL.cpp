@@ -655,7 +655,7 @@ namespace hpl {
     void cLowLevelGraphicsSDL::SetWindowCaption(const tString &asName)
     {
 #if SDL_VERSION_ATLEAST(2, 0, 0)
-        SDL_SetWindowTitle(mpScreen, asName.c_str());
+        SDL_SetWindowTitle(mpScreen, "Amnesia - The Dark Descent (NakedAmnesiaTDD Edition)");
 #else
         SDL_WM_SetCaption(asName.c_str(), "");
 #endif
